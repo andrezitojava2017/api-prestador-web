@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Db_lotacao {
+  id         Int          @id @unique @default(autoincrement())
+  created_at DateTime?    @default(now())
+  codigo     Int
+  descricao  String
+  Db_servico Db_servico[]
+}
+
+model Db_pessoas {
+  id         Int          @id @unique @default(autoincrement())
+  created_at DateTime?    @default(now())
+  nome       String
+  pisPasep   Int
+  Db_servico Db_servico[]
+}
+
+model Db_servico {
+  id            Int        @id @unique @default(autoincrement())
+  created_at    DateTime?  @default(now())
+  competencia   String
+  empenho       Int
+  fonte         Int?
+  inss_retido   Decimal
+  inss_patronal Decimal
+  salario_base  Decimal?
+  cod_lotacao   Db_lotacao @relation(fields: [db_lotacaoId], references: [id])
+  pisPasep      Db_pessoas @relation(fields: [db_pessoasId], references: [id])
+  db_lotacaoId  Int
+  db_pessoasId  Int
+}
+
+model Db_tributo {
+  id               Int       @id @unique @default(autoincrement())
+  created_at       DateTime? @default(now())
+  competencia      String
+  max_recolhimento Decimal?
+  base_patronal    Decimal?
+  base_segurado    Decimal?
+}

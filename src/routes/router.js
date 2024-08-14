@@ -8,4 +8,4 @@ export const geral = Router();
 
 login.post('/', loginController)
 
-geral.get('/', verifyAuthorization, test)
+geral.get('/', test)

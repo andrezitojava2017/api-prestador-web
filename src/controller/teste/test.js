@@ -1,6 +1,21 @@
+import { PrismaClient } from "@prisma/client";
 
-export const test = async (req, res, next)=>{
+const prisma = new PrismaClient();
 
-    return res.status(200).json({message: 'Test executado'})
+export const test = async (req, res, next) => {
+  try {
 
-}
+    const allPosts = await prisma.post.findMany();
+
+    console.log(allPosts);
+    return res.status(200).json({ data: allPosts });
+
+  } catch (error) {
+    console.warn(error);
+    return res.status(500).send("Erro interno no servidor")
+    
+  }finally{
+
+    await prisma.$disconnect()
+  }
+};
