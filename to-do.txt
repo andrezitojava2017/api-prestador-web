@@ -1,0 +1,59 @@
+API Prestador Web
+
+Principais Endpoints
+
+1- /login
+    ->recebe dois parametros no body: usuario e senha
+    -> se usuario existir é retornado um JWT
+    -> se nao existir é mensagem de erro
+
+2- /admin/usuario/novo
+    -> recebe um objeto json com dados para novo usuario: NOME, E-MAIL e senha
+    -> retorna mensagem de exito
+
+3- /config/inss/novo
+    -> cadastra novo TETO MAXIMO para INSS em uma competencia
+    -> recebe json com os dados: Maximo a recolher, patronal(%), segurado(%), competencia
+    -> retorna 200 (ok)
+    -> retorna 500 (erro no servidor)
+
+4- /config/secretaria/novo
+    -> adiciona uma nova 
+    -> recebe json com os dados: codigo da secretaria, descrição
+    -> retorna 200 (ok)
+    -> retorna 500 (erro no servidor)
+
+5- /config/inss/atualiza
+    -> atualiza dados referente a inss de uma competencia
+    -> recebe json com dados: id, e valores dos campos que serão atualizados
+    -> retorna 200 (ok)
+    -> retorna 500 (erro no servidor)
+
+6- /config/secretaria/atualiza
+    -> atualiza dados de uma secretaria 
+    -> recebe json com os dados: id, valores que serão atualizados
+    -> retorna 200 (ok)
+    -> retorna
+
+7- /prestador/novo
+    -> adiciona um novo prestador a base de dados
+    -> recebe json com dados do prestador: NOME, PIS/PASEP valido
+    -> retorna 200 (ok)
+    -> retorna
+
+8- /prestador/listar
+    -> recupera uma lista com todos os prestadores cadastrados
+    -> recebe parametro: NOME -: CASO INCLUIDO NA BUSCA, SENÃO É RETORNADO UMA LISTA COMPLETA
+    -> retorna 200(ok) - lista de prestadores(json), campos NOME e PIS/PASEP 
+
+9- /servico/listar
+    -> recupera uma lista de serviços cadastrados por competencia
+    -> recebe um parametro: COMPETENCIA 
+    -> retorna 200(ok) - lista de serviços referente a competencia informada
+    -> retorna 400(not-found) - caso não haja registros
+
+10- /servico/novo
+    -> cadastra um novo servico para um prestador e competencia especifica
+    -> recebe um json com dados: COMPETENCIA, EMPENHO, FONTE, INSS_RETIDO, INSS_PATRONAL, SALARIO_BASE, COD_LOTACAO, PISPASEP
+    -> retorna 200(ok)
+    -> retorna 500(erro interno)
