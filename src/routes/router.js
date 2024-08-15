@@ -18,4 +18,4 @@ login.post('/add', addNewUser); // inserir middleware de verificação de token
 config.post('/add', addNewSecretary); // inserir middleware de verificação de token
 
 /**Rotas de Testes */
-geral.get('/', verifyAuthorization, test);
+geral.get('/', test);

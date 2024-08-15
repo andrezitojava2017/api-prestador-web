@@ -7,42 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Db_lotacao {
-  id         Int          @id @unique @default(autoincrement())
-  created_at DateTime?    @default(now())
-  codigo     Int
-  descricao  String
-  Db_servico Db_servico[]
+model tb_pessoas {
+  nome      String @db.VarChar(200)
+  pis_pasep String @id @db.VarChar(100)
 }
 
-model Db_pessoas {
-  id         Int          @id @unique @default(autoincrement())
-  created_at DateTime?    @default(now())
-  nome       String
-  pisPasep   Int
-  Db_servico Db_servico[]
+model tbl_lotacao {
+  codigo_dotacao Int    @id
+  descricao      String @db.VarChar(200)
 }
 
-model Db_servico {
-  id            Int        @id @unique @default(autoincrement())
-  created_at    DateTime?  @default(now())
-  competencia   String
+model tbl_servicos {
+  id            Int      @id @default(autoincrement())
+  competencia   String   @db.VarChar(10)
   empenho       Int
-  fonte         Int?
-  inss_retido   Decimal
-  inss_patronal Decimal
-  salario_base  Decimal?
-  cod_lotacao   Db_lotacao @relation(fields: [db_lotacaoId], references: [id])
-  pisPasep      Db_pessoas @relation(fields: [db_pessoasId], references: [id])
-  db_lotacaoId  Int
-  db_pessoasId  Int
+  fonte         Int
+  pisPasep      String   @db.VarChar(20)
+  inss_retido   Decimal? @db.Decimal(10, 2)
+  inss_patronal Decimal? @db.Decimal(10, 2)
+  salario_base  Decimal? @db.Decimal(10, 2)
+  cod_dotacao   Int?
 }
 
-model Db_tributo {
-  id               Int       @id @unique @default(autoincrement())
-  created_at       DateTime? @default(now())
-  competencia      String
-  max_recolhimento Decimal?
-  base_patronal    Decimal?
-  base_segurado    Decimal?
+model tbl_usuario {
+  id       Int    @id @default(autoincrement())
+  nome     String @db.VarChar(255)
+  email    String @db.VarChar(255)
+  password String @db.VarChar(255)
 }

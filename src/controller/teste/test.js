@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 export const test = async (req, res, next) => {
   try {
 
-    const allPosts = await prisma.post.findMany();
+    const allPosts = await prisma.tbl_lotacao.findMany();
 
     console.log(allPosts);
     return res.status(200).json({ data: allPosts });
