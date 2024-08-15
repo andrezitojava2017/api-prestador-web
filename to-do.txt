@@ -3,7 +3,7 @@ API Prestador Web
 Principais Endpoints
 
 1- /login
-    ->recebe dois parametros no body: usuario e senha
+    ->recebe dois parametros no body: e-mail, nome de usuario e senha
     -> se usuario existir é retornado um JWT
     -> se nao existir é mensagem de erro
 
