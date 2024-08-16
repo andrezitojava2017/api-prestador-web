@@ -41,7 +41,7 @@
 - Retorna **200 (OK)** em caso de sucesso.
 - Retorna **500 (Erro no servidor)** em caso de erro.
 
-### 7. `/prestador/novo`
+### 7. [x]`/prestador/novo`
 
 - Adiciona um novo prestador à base de dados.
 - Recebe um JSON com os dados do prestador: **NOME**, **PIS/PASEP** válido.

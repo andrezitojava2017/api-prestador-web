@@ -1,4 +1,4 @@
-import { insertService } from '../../services/configService.js';
+import { insertService, insertTaxService } from '../../services/configService.js';
 
 export const addNewSecretary = async (req, res, next) => {
   const { descricao, codigo } = req.body;
@@ -14,3 +14,12 @@ export const addNewSecretary = async (req, res, next) => {
     return res.status(500).json({ error: error.message });
   }
 };
+
+export const insertNewTax = async(req, res, next)=>{
+  try {
+    await insertTaxService(req, res)
+    
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
+}

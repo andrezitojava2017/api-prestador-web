@@ -35,3 +35,11 @@ model tbl_usuario {
   email    String @db.VarChar(255)
   password String @db.VarChar(255)
 }
+
+model tbl_tributo {
+  id               Int     @id @default(autoincrement())
+  competencia      String  @db.VarChar(10)
+  max_recolhimento Decimal @db.Decimal(10, 2)
+  base_patronal    Decimal @db.Decimal(10, 2)
+  base_segurado    Decimal @db.Decimal(10, 2)
+}

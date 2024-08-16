@@ -20,4 +20,24 @@ const insertSecretary = async (descricao, codigo) => {
   }
 };
 
-export { insertSecretary };
+const insertTax = async (max_recolher, segurado, patronal, competencia) => {
+  try {
+    const rs = await prisma.tbl_tributo.create({
+      data: {
+        competencia: competencia,
+        max_recolhimento: max_recolher,
+        base_patronal:patronal,
+        base_segurado: segurado
+      },
+    });
+
+    return rs;
+  } catch (error) {
+    console.warn('ocorreu um erro ', error);
+    throw new Error('Ocorreu um erro ao tentar lançar tributo!');
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+export { insertSecretary, insertTax};
