@@ -1,13 +1,16 @@
+import { insertService } from '../../services/configService.js';
+
 export const addNewSecretary = async (req, res, next) => {
   const { descricao, codigo } = req.body;
 
   try {
-    console.log('Dados da secretaria ', req.body);
+    const data = await insertService(descricao, parseInt(codigo));
+
     return res
       .status(200)
-      .json({ message: 'Secretaria adicionada com sucesso!!' });
+      .json({ message: 'Secretaria adicionada com sucesso!!', data: data });
   } catch (error) {
     console.warn('Ocorreu um erro ', error);
-    return res.status(500).json({ error: 'Ocorreu um erro' });
+    return res.status(500).json({ error: error.message });
   }
 };

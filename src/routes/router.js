@@ -13,9 +13,9 @@ export const geral = Router();
 
 /**Rotas de Auth */
 login.post('/', loginController);
-login.post('/add', addNewUser); // inserir middleware de verificação de token
+login.post('/add', verifyAuthorization, addNewUser);
 
-config.post('/add', addNewSecretary); // inserir middleware de verificação de token
+config.post('/add', verifyAuthorization, addNewSecretary);
 
 /**Rotas de Testes */
 geral.get('/', test);
