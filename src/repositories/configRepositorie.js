@@ -15,6 +15,8 @@ const insertSecretary = async (descricao, codigo) => {
   } catch (error) {
     console.warn('ocorreu um erro ', error);
     throw new Error('Ocorreu um erro ao tentar lançar nova secretaria!');
+  } finally {
+    await prisma.$disconnect();
   }
 };
 

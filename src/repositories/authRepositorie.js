@@ -1,25 +1,21 @@
-import { PrismaClient } from "@prisma/client";
-import { decryption } from "../utils/cripto.js";
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 const SignIn = async (email) => {
-   try {
+  try {
     const user = await prisma.tbl_usuario.findFirst({
-        where:{
-            email:email,
-        }
-    })
+      where: {
+        email: email,
+      },
+    });
     return user;
-
-   } catch (error) {
-
+  } catch (error) {
     console.warn('Erro no login ', error);
-    throw new Error("Ocorreu um erro de Login")
-
-   } finally{
+    throw new Error('Ocorreu um erro de Login');
+  } finally {
     await prisma.$disconnect();
-   }
+  }
 };
 
 const CreateUser = async (name, email, password) => {
@@ -34,9 +30,8 @@ const CreateUser = async (name, email, password) => {
 
     return user;
   } catch (error) {
-    console.warn("Erro", error);
+    console.warn('Erro', error);
     throw error;
-    
   } finally {
     await prisma.$disconnect();
   }

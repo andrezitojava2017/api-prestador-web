@@ -20,7 +20,7 @@
 - Retorna **200 (OK)** em caso de sucesso.
 - Retorna **500 (Erro no servidor)** em caso de erro.
 
-### 4. `/config/secretaria/novo`
+### 4. [x]`/config/secretaria/novo`
 
 - Adiciona uma nova secretaria.
 - Recebe um JSON com os dados: **código da secretaria**, **descrição**.
