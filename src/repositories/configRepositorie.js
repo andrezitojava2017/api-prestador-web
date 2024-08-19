@@ -40,4 +40,51 @@ const insertTax = async (max_recolher, segurado, patronal, competencia) => {
   }
 };
 
-export { insertSecretary, insertTax};
+const updateTax = async (id, max_recolher, segurado, patronal, competencia) => {
+  try {
+    const updateTax = await prisma.tbl_tributo.update({
+      where: {
+        id: id,
+      },
+      data: {
+       competencia: competencia,
+       max_recolhimento: max_recolher,
+       base_patronal: patronal,
+       base_segurado: segurado 
+      },
+    })
+
+    return updateTax;
+
+  } catch (error) {
+    console.warn('ocorreu um erro ', error);
+    throw new Error('Ocorreu um erro ao tentar atualizar tributo!');
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+const updateSecretary = async (codigo, descricao) =>{
+  try {
+    const updateSec = await prisma.tbl_lotacao.update({
+      where: {
+        codigo_dotacao: codigo,
+      },
+      data: {
+       descricao: descricao
+      },
+    })
+
+    return updateSec;
+
+  } catch (error) {
+    console.warn('ocorreu um erro ', error);
+    throw new Error('Ocorreu um erro ao tentar atualizar secretaria!');
+  } finally {
+    await prisma.$disconnect();
+  }
+
+}
+
+
+export { insertSecretary, insertTax, updateTax, updateSecretary};

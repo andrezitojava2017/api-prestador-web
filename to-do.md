@@ -13,7 +13,7 @@
 - Recebe um objeto JSON com os dados para um novo usuário: **NOME**, **E-MAIL** e **senha**.
 - Retorna uma mensagem de êxito.
 
-### 3. `/config/inss/novo`
+### 3.[x]`/config/inss/novo`
 
 - Cadastra um novo TETO MÁXIMO para o INSS em uma competência.
 - Recebe um JSON com os dados: **Máximo a recolher**, **patronal(%)**, **segurado(%)**, **competência**.
@@ -27,14 +27,14 @@
 - Retorna **200 (OK)** em caso de sucesso.
 - Retorna **500 (Erro no servidor)** em caso de erro.
 
-### 5. `/config/inss/atualiza`
+### 5.[x] `/config/inss/atualiza`
 
 - Atualiza dados referentes ao INSS de uma competência.
 - Recebe um JSON com os dados: **id** e valores dos campos que serão atualizados.
 - Retorna **200 (OK)** em caso de sucesso.
 - Retorna **500 (Erro no servidor)** em caso de erro.
 
-### 6. `/config/secretaria/atualiza`
+### 6.[x] `/config/secretaria/atualiza`
 
 - Atualiza dados de uma secretaria.
 - Recebe um JSON com os dados: **id** e valores que serão atualizados.

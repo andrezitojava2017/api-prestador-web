@@ -5,9 +5,10 @@ import {
   addNewUser,
   loginController,
 } from '../controller/authController/login.js';
-import { addNewSecretary } from '../controller/configController/config.js';
+import { addNewSecretary, updateSecretaryController, updateTaxController } from '../controller/configController/config.js';
 import { insertFreelancer } from '../controller/freelancerController/freelancer.js';
 import { insertTaxService } from '../services/configService.js';
+import { listServicesByCompetence } from '../services/freelancerService.js';
 
 export const login = Router();
 export const config = Router();
@@ -20,10 +21,13 @@ login.post('/add', verifyAuthorization, addNewUser);
 
 /**Rotas de configuração */
 config.post('/add', verifyAuthorization, addNewSecretary);
+config.post('/update', verifyAuthorization, updateSecretaryController)
 config.post('/tax/new',verifyAuthorization, insertTaxService)
+config.post('/tax/update', verifyAuthorization, updateTaxController)
 
 /**Rotas para prestador */
 freelancer.post('/new', verifyAuthorization, insertFreelancer);
+freelancer.post('/service', listServicesByCompetence);
 
 /**Rotas de Testes */
 geral.get('/', test);

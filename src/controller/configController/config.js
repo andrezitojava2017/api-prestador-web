@@ -1,4 +1,9 @@
-import { insertService, insertTaxService } from '../../services/configService.js';
+import {
+  insertService,
+  insertTaxService,
+  updateSecretraryService,
+  updateTaxService,
+} from "../../services/configService.js";
 
 export const addNewSecretary = async (req, res, next) => {
   const { descricao, codigo } = req.body;
@@ -8,18 +13,34 @@ export const addNewSecretary = async (req, res, next) => {
 
     return res
       .status(200)
-      .json({ message: 'Secretaria adicionada com sucesso!!', data: data });
+      .json({ message: "Secretaria adicionada com sucesso!!", data: data });
   } catch (error) {
-    console.warn('Ocorreu um erro ', error);
+    console.warn("Ocorreu um erro ", error);
     return res.status(500).json({ error: error.message });
   }
 };
 
-export const insertNewTax = async(req, res, next)=>{
+export const insertNewTax = async (req, res, next) => {
   try {
-    await insertTaxService(req, res)
-    
+    await insertTaxService(req, res);
   } catch (error) {
-    return res.status(500).json({error: error.message})
+    return res.status(500).json({ error: error.message });
   }
-}
+};
+
+export const updateTaxController = async (req, res, next) => {
+  try {
+    await updateTaxService(req, res);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+export const updateSecretaryController = async (req, res, next) => {
+  try {
+    await updateSecretraryService(req, res);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
