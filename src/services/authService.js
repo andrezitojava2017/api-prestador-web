@@ -1,10 +1,10 @@
 import { CreateUser, SignIn } from "../repositories/authRepositorie.js";
 import { decryption, encryption } from "../utils/cripto.js";
 
-const addUserService = async (email, name, password) => {
+const addUserService = async (email, nome, password) => {
   try {
     let encryptedPassword = await encryption(password);
-    const user = await CreateUser(name, email, encryptedPassword);
+    const user = await CreateUser(nome, email, encryptedPassword);
     return user;
   } catch (error) {
     throw error;

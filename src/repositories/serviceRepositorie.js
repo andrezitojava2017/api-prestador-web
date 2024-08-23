@@ -9,13 +9,13 @@ const ListService = async (referencia) => {
         pessoa: {
           select: {
             nome: true,
-            pis_pasep: true
-          }
-        }
+            pis_pasep: true,
+          },
+        },
       },
-      where:{
-        competencia: referencia
-      }
+      where: {
+        competencia: referencia,
+      },
     });
 
     return services;
@@ -27,4 +27,41 @@ const ListService = async (referencia) => {
   }
 };
 
-export { ListService };
+const insertNewService = async (
+  competencia,
+  empenho,
+  fonte,
+  inss_retido,
+  inss_patronal,
+  sal_base,
+  cod_lotacao,
+  pis_pasep
+) => {
+
+  try {
+    const service = await prisma.tbl_servicos.create({
+      data:{
+        competencia: competencia,
+        empenho: empenho,
+        fonte:fonte,
+        cod_dotacao: cod_lotacao,
+        inss_retido: inss_retido,
+        inss_patronal: inss_patronal,
+        salario_base: sal_base,
+        pisPasep: pis_pasep
+      }
+    })
+
+    return service;
+
+  } catch (error) {
+
+    console.log(error)
+    throw new Error('Ocorreu um erro ao tentar inserir novo serviço')
+
+  }finally {
+    await prisma.$disconnect();
+  }
+};
+
+export { ListService, insertNewService };

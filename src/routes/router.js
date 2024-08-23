@@ -9,6 +9,7 @@ import { addNewSecretary, updateSecretaryController, updateTaxController } from 
 import { insertFreelancer } from '../controller/freelancerController/freelancer.js';
 import { insertTaxService } from '../services/configService.js';
 import { listServicesByCompetence } from '../services/freelancerService.js';
+import { insertServiceController } from '../controller/services/servicesController.js';
 
 export const login = Router();
 export const config = Router();
@@ -17,7 +18,7 @@ export const freelancer = Router();
 
 /**Rotas de Auth */
 login.post('/', loginController);
-login.post('/add', verifyAuthorization, addNewUser);
+login.post('/add',verifyAuthorization, addNewUser);
 
 /**Rotas de configuração */
 config.post('/add', verifyAuthorization, addNewSecretary);
@@ -28,6 +29,7 @@ config.post('/tax/update', verifyAuthorization, updateTaxController)
 /**Rotas para prestador */
 freelancer.post('/new', verifyAuthorization, insertFreelancer);
 freelancer.post('/service', listServicesByCompetence);
+freelancer.post('/service/new', insertServiceController);
 
 /**Rotas de Testes */
 geral.get('/', test);

@@ -54,14 +54,14 @@
 - Recebe o parâmetro: **NOME** - caso incluído na busca, senão é retornada uma lista completa.
 - Retorna **200 (OK)** - lista de prestadores (JSON) com os campos **NOME** e **PIS/PASEP**.
 
-### 9. `/servico/listar`
+### 9.[x] `/servico/listar`
 
 - Recupera uma lista de serviços cadastrados por competência.
 - Recebe um parâmetro: **COMPETÊNCIA**.
 - Retorna **200 (OK)** - lista de serviços referente à competência informada.
 - Retorna **400 (Not Found)** - caso não haja registros.
 
-### 10. `/servico/novo`
+### 10. [x]`/servico/novo`
 
 - Cadastra um novo serviço para um prestador e uma competência específica.
 - Recebe um JSON com os dados: **COMPETÊNCIA**, **EMPENHO**, **FONTE**, **INSS_RETIDO**, **INSS_PATRONAL**, **SALÁRIO_BASE**, **COD_LOTAÇÃO**, **PISPASEP**.

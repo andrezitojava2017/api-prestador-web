@@ -18,13 +18,13 @@ const SignIn = async (email) => {
   }
 };
 
-const CreateUser = async (name, email, password) => {
+const CreateUser = async (nome, email, password) => {
   try {
     const user = await prisma.tbl_usuario.create({
       data: {
         email: email,
         password: password,
-        nome: name,
+        nome: nome,
       },
     });
 

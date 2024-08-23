@@ -15,6 +15,8 @@ export const loginController = async (req, res, next) => {
       }
     );
 
+    console.log('token gerado: ', token);
+    
     res.status(200).json({ token });
   } catch (error) {
     console.warn(error);
@@ -23,9 +25,9 @@ export const loginController = async (req, res, next) => {
 };
 
 export const addNewUser = async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { nome, email, password } = req.body;
   try {
-    await addUserService(email, name, password);
+    await addUserService(email, nome, password);
     return res
       .status(200)
       .json({ message: 'Usuario adicionado com sucesso!!' });
