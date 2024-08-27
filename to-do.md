@@ -67,3 +67,10 @@
 - Recebe um JSON com os dados: **COMPETÊNCIA**, **EMPENHO**, **FONTE**, **INSS_RETIDO**, **INSS_PATRONAL**, **SALÁRIO_BASE**, **COD_LOTAÇÃO**, **PISPASEP**.
 - Retorna **200 (OK)** em caso de sucesso.
 - Retorna **500 (Erro Interno)** em caso de erro.
+
+### 11. `/config/inss/list`
+
+- recupera uma lista de competencias para selecionar tributos.
+- Sem parametros a receber.
+- Retorna **200 (OK)** em caso de sucesso, com lista de tributos e meses de referencia.
+- Retorna **500 (Erro Interno)** em caso de erro.

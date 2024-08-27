@@ -86,5 +86,21 @@ const updateSecretary = async (codigo, descricao) =>{
 
 }
 
+const getListTax = async ()=>{
+  try {
+    const list = await prisma.tbl_tributo.findMany()
 
-export { insertSecretary, insertTax, updateTax, updateSecretary};
+    console.log('lista de tributos ', list);
+    
+    return list;
+
+  } catch (error) {
+    console.warn('ocorreu um erro ', error);
+    throw new Error('Ocorreu um erro ao tentar recuperar lista de tributos');
+  } finally {
+    await prisma.$disconnect();
+  }
+
+}
+
+export { insertSecretary, insertTax, updateTax, updateSecretary, getListTax};
