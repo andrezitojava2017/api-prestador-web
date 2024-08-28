@@ -1,4 +1,5 @@
 import {
+  getListSecretary,
   getListTax,
   insertSecretary,
   insertTax,
@@ -69,10 +70,19 @@ const getAllListTaxService = async (req, res) => {
   }
 };
 
+const getAllListSecretary = async (req, res) =>{
+  try {
+    const rs = await getListSecretary()
+    res.status(200).json(rs)
+  } catch (error) {
+    res.status(500).json({error: error.mesage})
+  }
+}
 export {
   insertService,
   insertTaxService,
   updateTaxService,
   updateSecretraryService,
   getAllListTaxService,
+  getAllListSecretary
 };

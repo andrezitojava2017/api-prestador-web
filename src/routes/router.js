@@ -7,7 +7,7 @@ import {
 } from '../controller/authController/login.js';
 import { addNewSecretary, updateSecretaryController, updateTaxController } from '../controller/configController/config.js';
 import { insertFreelancer } from '../controller/freelancerController/freelancer.js';
-import { getAllListTaxService, insertTaxService } from '../services/configService.js';
+import { getAllListSecretary, getAllListTaxService, insertTaxService } from '../services/configService.js';
 import { listServicesByCompetence } from '../services/freelancerService.js';
 import { insertServiceController } from '../controller/services/servicesController.js';
 
@@ -26,6 +26,7 @@ config.post('/update', verifyAuthorization, updateSecretaryController)
 config.post('/tax/new',verifyAuthorization, insertTaxService)
 config.post('/tax/update', verifyAuthorization, updateTaxController)
 config.get('/inss/list', getAllListTaxService)
+config.get('/lotation/', getAllListSecretary)
 
 /**Rotas para prestador */
 freelancer.post('/new', verifyAuthorization, insertFreelancer);
