@@ -78,6 +78,7 @@ const getAllListSecretary = async (req, res) =>{
     res.status(500).json({error: error.mesage})
   }
 }
+
 export {
   insertService,
   insertTaxService,

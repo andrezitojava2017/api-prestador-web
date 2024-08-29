@@ -1,6 +1,6 @@
 import { ListAllServices } from "../controller/services/servicesController.js";
 import { freelancerRespositorie } from "../repositories/freelancerRespositorie.js";
-import { insertNewService } from "../repositories/serviceRepositorie.js";
+import { insertNewService, ListService } from "../repositories/serviceRepositorie.js";
 
 const freelancerService = async (nome, pispasep) => {
   try {
@@ -11,9 +11,11 @@ const freelancerService = async (nome, pispasep) => {
   }
 };
 
-const listServicesByCompetence = async (req, res, next) => {
+const listServicesByCompetence = async (referencia) => {
   try {
-    await ListAllServices(req, res);
+    const list = await ListService(referencia);
+    return list;
+    
   } catch (error) {
     throw error;
   }

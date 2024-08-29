@@ -68,7 +68,7 @@
 - Retorna **200 (OK)** em caso de sucesso.
 - Retorna **500 (Erro Interno)** em caso de erro.
 
-### 11. `/config/inss/list`
+### 11.[X] `/config/inss/list`
 
 - recupera uma lista de competencias para selecionar tributos.
 - Sem parametros a receber.

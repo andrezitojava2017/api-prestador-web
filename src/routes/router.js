@@ -9,7 +9,7 @@ import { addNewSecretary, updateSecretaryController, updateTaxController } from 
 import { insertFreelancer } from '../controller/freelancerController/freelancer.js';
 import { getAllListSecretary, getAllListTaxService, insertTaxService } from '../services/configService.js';
 import { listServicesByCompetence } from '../services/freelancerService.js';
-import { insertServiceController } from '../controller/services/servicesController.js';
+import { insertServiceController, ListAllServices } from '../controller/services/servicesController.js';
 
 export const login = Router();
 export const config = Router();
@@ -32,6 +32,7 @@ config.get('/lotation/', getAllListSecretary)
 freelancer.post('/new', verifyAuthorization, insertFreelancer);
 freelancer.post('/service', listServicesByCompetence);
 freelancer.post('/service/new', insertServiceController);
+freelancer.post('/service/list', ListAllServices)
 
 /**Rotas de Testes */
 geral.get('/', test);

@@ -2,12 +2,12 @@ import {
   insertNewService,
   ListService,
 } from "../../repositories/serviceRepositorie.js";
-import { insertService } from "../../services/freelancerService.js";
+import { insertService, listServicesByCompetence } from "../../services/freelancerService.js";
 
 export const ListAllServices = async (req, res) => {
   const { referencia } = req.body;
   try {
-    const service = await ListService(referencia);
+    const service = await listServicesByCompetence(referencia);
     return res.status(200).json({ data: service });
   } catch (error) {
     return res.status(500).json({ error: error.message });
