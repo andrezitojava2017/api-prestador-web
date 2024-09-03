@@ -6,7 +6,7 @@ import {
   loginController,
 } from '../controller/authController/login.js';
 import { addNewSecretary, updateSecretaryController, updateTaxController } from '../controller/configController/config.js';
-import { insertFreelancer } from '../controller/freelancerController/freelancer.js';
+import { getAllFreelancer, getInfoFreelancer, insertFreelancer } from '../controller/freelancerController/freelancer.js';
 import { getAllListSecretary, getAllListTaxService, insertTaxService } from '../services/configService.js';
 import { listServicesByCompetence } from '../services/freelancerService.js';
 import { insertServiceController, ListAllServices } from '../controller/services/servicesController.js';
@@ -33,6 +33,8 @@ freelancer.post('/new', verifyAuthorization, insertFreelancer);
 freelancer.post('/service', listServicesByCompetence);
 freelancer.post('/service/new', insertServiceController);
 freelancer.post('/service/list', ListAllServices)
+freelancer.get('/list/:data', getInfoFreelancer)
+freelancer.get('/list/', getAllFreelancer)
 
 /**Rotas de Testes */
 geral.get('/', test);
