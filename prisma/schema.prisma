@@ -16,6 +16,7 @@ model tb_pessoas {
 model tbl_lotacao {
   codigo_dotacao Int    @id
   descricao      String @db.VarChar(200)
+  tbl_servicos tbl_servicos[]
 }
 
 model tbl_servicos {
@@ -29,6 +30,8 @@ model tbl_servicos {
   salario_base  Decimal? @db.Decimal(10, 2)
   cod_dotacao   Int?
   pessoa        tb_pessoas? @relation(fields: [pisPasep], references: [pis_pasep])
+  lotacao       tbl_lotacao? @relation(fields: [cod_dotacao], references: [codigo_dotacao])
+
 }
 
 model tbl_usuario {

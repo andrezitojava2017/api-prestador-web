@@ -7,7 +7,7 @@ import { insertService, listServicesByCompetence } from "../../services/freelanc
 export const ListAllServices = async (req, res) => {
   const { referencia } = req.body;
   try {
-    const service = await listServicesByCompetence(referencia);
+    const service = await listServicesByCompetence('09/2019');
     return res.status(200).json({ data: service });
   } catch (error) {
     return res.status(500).json({ error: error.message });

@@ -18,6 +18,8 @@ const ListService = async (referencia) => {
       },
     });
 
+    console.log(services);
+    
     return services;
   } catch (error) {
     console.warn("Ocorreu um erro ", error);
