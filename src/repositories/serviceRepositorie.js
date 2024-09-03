@@ -12,18 +12,30 @@ const ListService = async (referencia) => {
             pis_pasep: true,
           },
         },
-        lotacao:{
-          select:{
-            descricao:true
-          }
-        }
+        lotacao: {
+          select: {
+            descricao: true,
+          },
+        },
       },
       where: {
         competencia: referencia,
       },
     });
     
-    return services;
+    // Converta os campos de string para number
+    const servicesWithNumber = services.map((service) => ({
+      ...service,
+      inss_retido: service.inss_retido ? parseFloat(service.inss_retido) : null,
+      inss_patronal: service.inss_patronal
+        ? parseFloat(service.inss_patronal)
+        : null,
+      salario_base: service.salario_base
+        ? parseFloat(service.salario_base)
+        : null,
+    }));
+
+    return servicesWithNumber;
   } catch (error) {
     console.warn("Ocorreu um erro ", error);
     throw new Error("Ocorreu um erro ao recuperar lista de serviços");
@@ -42,29 +54,25 @@ const insertNewService = async (
   cod_lotacao,
   pis_pasep
 ) => {
-
   try {
     const service = await prisma.tbl_servicos.create({
-      data:{
+      data: {
         competencia: competencia,
         empenho: empenho,
-        fonte:fonte,
+        fonte: fonte,
         cod_dotacao: cod_lotacao,
         inss_retido: inss_retido,
         inss_patronal: inss_patronal,
         salario_base: sal_base,
-        pisPasep: pis_pasep
-      }
-    })
+        pisPasep: pis_pasep,
+      },
+    });
 
     return service;
-
   } catch (error) {
-
-    console.log(error)
-    throw new Error('Ocorreu um erro ao tentar inserir novo serviço')
-
-  }finally {
+    console.log(error);
+    throw new Error("Ocorreu um erro ao tentar inserir novo serviço");
+  } finally {
     await prisma.$disconnect();
   }
 };
