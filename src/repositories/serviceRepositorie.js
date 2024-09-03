@@ -12,13 +12,16 @@ const ListService = async (referencia) => {
             pis_pasep: true,
           },
         },
+        lotacao:{
+          select:{
+            descricao:true
+          }
+        }
       },
       where: {
         competencia: referencia,
       },
     });
-
-    console.log(services);
     
     return services;
   } catch (error) {

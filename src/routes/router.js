@@ -18,7 +18,7 @@ export const freelancer = Router();
 
 /**Rotas de Auth */
 login.post('/', loginController);
-login.post('/add',verifyAuthorization, addNewUser);
+login.post('/add',addNewUser);
 
 /**Rotas de configuração */
 config.post('/add', verifyAuthorization, addNewSecretary);
