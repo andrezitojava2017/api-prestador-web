@@ -52,8 +52,26 @@ const getFreelancerInfo = async (search) => {
   }
 };
 
+const pisPasepExist = async(value)=>{
+  try {
+    const rs = await prisma.tb_pessoas.findMany({
+      where:{
+        pis_pasep:value
+      }
+    });
+
+    return rs;
+  } catch (error) {
+    console.log("Erro ocorrido ", error);
+    throw new Error("Ocorreu um erro ao tentar recupera dados do prestador");
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
 export {
   freelancerRespositorie,
   getFreelancerInfo,
   getAllFreelanceRepositorie,
+  pisPasepExist,
 };

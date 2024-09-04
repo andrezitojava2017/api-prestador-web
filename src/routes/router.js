@@ -10,6 +10,7 @@ import { getAllFreelancer, getInfoFreelancer, insertFreelancer } from '../contro
 import { getAllListSecretary, getAllListTaxService, insertTaxService } from '../services/configService.js';
 import { listServicesByCompetence } from '../services/freelancerService.js';
 import { insertServiceController, ListAllServices } from '../controller/services/servicesController.js';
+import { verificationPisPasepExist } from '../middleware/freelancer.js';
 
 export const login = Router();
 export const config = Router();
@@ -29,7 +30,7 @@ config.get('/inss/list', getAllListTaxService)
 config.get('/lotation/', getAllListSecretary)
 
 /**Rotas para prestador */
-freelancer.post('/new', verifyAuthorization, insertFreelancer);
+freelancer.post('/new', verifyAuthorization, verificationPisPasepExist, insertFreelancer );
 freelancer.post('/service', listServicesByCompetence);
 freelancer.post('/service/new', insertServiceController);
 freelancer.post('/service/list', ListAllServices)

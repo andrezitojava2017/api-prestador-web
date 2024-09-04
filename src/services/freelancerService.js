@@ -3,6 +3,7 @@ import {
   freelancerRespositorie,
   getAllFreelanceRepositorie,
   getFreelancerInfo,
+  pisPasepExist,
 } from "../repositories/freelancerRespositorie.js";
 import {
   insertNewService,
@@ -46,6 +47,7 @@ const listServicesByCompetence = async (referencia) => {
   }
 };
 
+
 const insertService = async (
   competencia,
   empenho,
@@ -77,5 +79,5 @@ export {
   listServicesByCompetence,
   insertService,
   getInfoFreelancerService,
-  getAllFreelanceService
+  getAllFreelanceService,
 };
