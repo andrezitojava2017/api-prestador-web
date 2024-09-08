@@ -8,8 +8,8 @@ datasource db {
 }
 
 model tb_pessoas {
-  nome      String @db.VarChar(200)
-  pis_pasep String @id @db.VarChar(100)
+  nome         String         @db.VarChar(200)
+  pis_pasep    String         @id @db.VarChar(100)
   tbl_servicos tbl_servicos[]
 }
 
@@ -19,14 +19,14 @@ model tbl_lotacao {
 }
 
 model tbl_servicos {
-  id            Int      @id @default(autoincrement())
-  competencia   String   @db.VarChar(10)
+  id            Int         @id @default(autoincrement())
+  competencia   String      @db.VarChar(10)
   empenho       Int
   fonte         Int
-  pisPasep      String   @db.VarChar(20)
-  inss_retido   Decimal? @db.Decimal(10, 2)
-  inss_patronal Decimal? @db.Decimal(10, 2)
-  salario_base  Decimal? @db.Decimal(10, 2)
+  pisPasep      String      @db.VarChar(100)
+  inss_retido   Decimal?    @db.Decimal(10, 2)
+  inss_patronal Decimal?    @db.Decimal(10, 2)
+  salario_base  Decimal?    @db.Decimal(10, 2)
   cod_dotacao   Int?
   pessoa        tb_pessoas? @relation(fields: [pisPasep], references: [pis_pasep])
 }

@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -18,10 +18,11 @@ const ListService = async (referencia) => {
       },
     });
 
+    console.log(services);
     return services;
   } catch (error) {
-    console.warn("Ocorreu um erro ", error);
-    throw new Error("Ocorreu um erro ao recuperar lista de serviços");
+    console.warn('Ocorreu um erro ', error);
+    throw new Error('Ocorreu um erro ao recuperar lista de serviços');
   } finally {
     await prisma.$disconnect();
   }
@@ -37,29 +38,25 @@ const insertNewService = async (
   cod_lotacao,
   pis_pasep
 ) => {
-
   try {
     const service = await prisma.tbl_servicos.create({
-      data:{
+      data: {
         competencia: competencia,
         empenho: empenho,
-        fonte:fonte,
+        fonte: fonte,
         cod_dotacao: cod_lotacao,
         inss_retido: inss_retido,
         inss_patronal: inss_patronal,
         salario_base: sal_base,
-        pisPasep: pis_pasep
-      }
-    })
+        pisPasep: pis_pasep,
+      },
+    });
 
     return service;
-
   } catch (error) {
-
-    console.log(error)
-    throw new Error('Ocorreu um erro ao tentar inserir novo serviço')
-
-  }finally {
+    console.log(error);
+    throw new Error('Ocorreu um erro ao tentar inserir novo serviço');
+  } finally {
     await prisma.$disconnect();
   }
 };
