@@ -4,6 +4,7 @@ import {
   getAllFreelanceRepositorie,
   getFreelancerInfo,
   pisPasepExist,
+  updateFreelanceRepositorie,
 } from "../repositories/freelancerRespositorie.js";
 import {
   insertNewService,
@@ -54,8 +55,8 @@ const insertService = async (
   fonte,
   inss_retido,
   inss_patronal,
-  sal_base,
-  cod_lotacao,
+  salario_base,
+  cod_dotacao,
   pis_pasep
 ) => {
   try {
@@ -65,8 +66,8 @@ const insertService = async (
       fonte,
       inss_retido,
       inss_patronal,
-      sal_base,
-      cod_lotacao,
+      salario_base,
+      cod_dotacao,
       pis_pasep
     );
     return service;
@@ -74,10 +75,22 @@ const insertService = async (
     throw error;
   }
 };
+
+const updateFreelanceService = async(freelance)=>{
+  try {
+    await updateFreelanceRepositorie(freelance)
+
+  } catch (error) {
+    throw error
+  }
+}
+
+
 export {
   freelancerService,
   listServicesByCompetence,
   insertService,
   getInfoFreelancerService,
   getAllFreelanceService,
+  updateFreelanceService,
 };

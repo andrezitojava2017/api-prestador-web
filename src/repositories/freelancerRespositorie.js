@@ -52,12 +52,12 @@ const getFreelancerInfo = async (search) => {
   }
 };
 
-const pisPasepExist = async(value)=>{
+const pisPasepExist = async (value) => {
   try {
     const rs = await prisma.tb_pessoas.findMany({
-      where:{
-        pis_pasep:value
-      }
+      where: {
+        pis_pasep: value,
+      },
     });
 
     return rs;
@@ -67,11 +67,29 @@ const pisPasepExist = async(value)=>{
   } finally {
     await prisma.$disconnect();
   }
-}
+};
+
+const updateFreelanceRepositorie = async (freelance) => {
+  try {
+    const updateUsers = await prisma.tb_pessoas.updateMany({
+      where: {
+        pis_pasep: freelance.pis_pasep,
+      },
+      data: {
+        ...freelance,
+      },
+    });
+
+    return;
+  } catch (error) {
+    throw new Error("Não foi possivel atualizar registro de prestador");
+  }
+};
 
 export {
   freelancerRespositorie,
   getFreelancerInfo,
   getAllFreelanceRepositorie,
   pisPasepExist,
+  updateFreelanceRepositorie,
 };

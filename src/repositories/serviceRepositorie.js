@@ -50,8 +50,8 @@ const insertNewService = async (
   fonte,
   inss_retido,
   inss_patronal,
-  sal_base,
-  cod_lotacao,
+  salario_base,
+  cod_dotacao,
   pis_pasep
 ) => {
   try {
@@ -60,11 +60,11 @@ const insertNewService = async (
         competencia: competencia,
         empenho: empenho,
         fonte: fonte,
-        cod_dotacao: cod_lotacao,
+        cod_dotacao: cod_dotacao,
         inss_retido: inss_retido,
         inss_patronal: inss_patronal,
-        salario_base: sal_base,
-        pisPasep: pis_pasep,
+        salario_base: salario_base,
+        pis_pasep: pis_pasep,
       },
     });
 
@@ -77,4 +77,41 @@ const insertNewService = async (
   }
 };
 
-export { ListService, insertNewService };
+const updateServiceRepositorie = async(
+  id,
+  competencia,
+  empenho,
+  fonte,
+  inss_retido,
+  inss_patronal,
+  salario_base,
+  cod_dotacao,
+)=>{
+
+  try {
+    const service = await prisma.tbl_servicos.update({
+      where: {
+        id: id,
+      },
+      data: {
+        competencia: competencia,
+        empenho: empenho,
+        fonte: fonte,
+        cod_dotacao: cod_dotacao,
+        inss_retido: inss_retido,
+        inss_patronal: inss_patronal,
+        salario_base: salario_base,
+      },
+    });
+
+    return service;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Ocorreu um erro ao tentar atualizar o serviço");
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+
+export { ListService, insertNewService, updateServiceRepositorie };

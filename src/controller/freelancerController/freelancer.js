@@ -1,8 +1,8 @@
-
 import {
   freelancerService,
   getAllFreelanceService,
   getInfoFreelancerService,
+  updateFreelanceService,
 } from "../../services/freelancerService.js";
 
 export const insertFreelancer = async (req, res) => {
@@ -19,7 +19,7 @@ export const insertFreelancer = async (req, res) => {
 
 export const getInfoFreelancer = async (req, res) => {
   const search = req.params.data;
-   
+
   try {
     const list = await getInfoFreelancerService(search);
     res.status(200).json(list);
@@ -29,7 +29,6 @@ export const getInfoFreelancer = async (req, res) => {
 };
 
 export const getAllFreelancer = async (req, res) => {
- 
   try {
     const list = await getAllFreelanceService();
     res.status(200).json(list);
@@ -38,3 +37,16 @@ export const getAllFreelancer = async (req, res) => {
   }
 };
 
+export const updateFreelancer = async (req, res) => {
+  try {
+    const { pis_pasep, nome } = req.body;
+    const rs = await updateFreelanceService({
+      pis_pasep: pis_pasep,
+      nome: nome,
+    });
+
+    return res.status(200).json({ message: "Prestador Atualizado com sucesso!" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
