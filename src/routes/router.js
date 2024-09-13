@@ -9,8 +9,9 @@ import { addNewSecretary, updateSecretaryController, updateTaxController } from 
 import { getAllFreelancer, getInfoFreelancer, insertFreelancer, updateFreelancer } from '../controller/freelancerController/freelancer.js';
 import { getAllListSecretary, getAllListTaxService, insertTaxService } from '../services/configService.js';
 import { listServicesByCompetence } from '../services/freelancerService.js';
-import { insertServiceController, ListAllServices, updateServiceController } from '../controller/services/servicesController.js';
+import { getRelatorioGuiasMensal, insertServiceController, ListAllServices, updateServiceController } from '../controller/services/servicesController.js';
 import { verificationPisPasepExist } from '../middleware/freelancer.js';
+import { relatorioGuiasMensal } from '../repositories/serviceRepositorie.js';
 
 export const login = Router();
 export const config = Router();
@@ -26,18 +27,19 @@ config.post('/add', verifyAuthorization, addNewSecretary);
 config.post('/update', verifyAuthorization, updateSecretaryController)
 config.post('/tax/new',verifyAuthorization, insertTaxService)
 config.post('/tax/update', verifyAuthorization, updateTaxController)
-config.get('/inss/list', getAllListTaxService)
-config.get('/lotation/', getAllListSecretary)
+config.get('/inss/list',verifyAuthorization, getAllListTaxService)
+config.get('/lotation/',verifyAuthorization, getAllListSecretary)
 
 /**Rotas para prestador */
 freelancer.post('/new', verifyAuthorization, verificationPisPasepExist, insertFreelancer );
-freelancer.post('/service', listServicesByCompetence);
-freelancer.post('/service/new', verificationPisPasepExist, insertServiceController);
-freelancer.post('/service/list', ListAllServices)
-freelancer.patch('/service/update/', updateServiceController)
-freelancer.get('/list/:data', getInfoFreelancer)
-freelancer.get('/list/', getAllFreelancer)
-freelancer.put('/update/',verifyAuthorization, updateFreelancer)
+freelancer.post('/service', verifyAuthorization, listServicesByCompetence);
+freelancer.post('/service/new', verifyAuthorization, verificationPisPasepExist, insertServiceController);
+freelancer.post('/service/list', verifyAuthorization, ListAllServices)
+freelancer.patch('/service/update/', verifyAuthorization, updateServiceController)
+freelancer.get('/list/:data', verifyAuthorization, getInfoFreelancer)
+freelancer.get('/list/', verifyAuthorization, getAllFreelancer)
+freelancer.put('/update/',verifyAuthorization, verifyAuthorization, updateFreelancer)
+freelancer.get('/rel/:referencia/:ano', verifyAuthorization, getRelatorioGuiasMensal)
 
 /**Rotas de Testes */
 geral.get('/', test);

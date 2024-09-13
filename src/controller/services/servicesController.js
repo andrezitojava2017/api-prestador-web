@@ -1,6 +1,7 @@
 import {
   insertNewService,
   ListService,
+  relatorioGuiasMensal,
   updateServiceRepositorie,
 } from "../../repositories/serviceRepositorie.js";
 import {
@@ -79,3 +80,16 @@ export const updateServiceController = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const getRelatorioGuiasMensal = async (req, res)=>{
+  try {
+    const referencia = `${req.params.referencia}/${req.params.ano}`;
+  
+    const rs = await relatorioGuiasMensal(referencia)
+    res.status(200).json({rs})
+
+  } catch (error) {
+    console.log('Erro ocorrido: ', error)
+    res.status(500).json({error: error.message})
+  }
+}

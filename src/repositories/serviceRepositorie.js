@@ -22,7 +22,7 @@ const ListService = async (referencia) => {
         competencia: referencia,
       },
     });
-    
+
     // Converta os campos de string para number
     const servicesWithNumber = services.map((service) => ({
       ...service,
@@ -77,7 +77,7 @@ const insertNewService = async (
   }
 };
 
-const updateServiceRepositorie = async(
+const updateServiceRepositorie = async (
   id,
   competencia,
   empenho,
@@ -85,9 +85,8 @@ const updateServiceRepositorie = async(
   inss_retido,
   inss_patronal,
   salario_base,
-  cod_dotacao,
-)=>{
-
+  cod_dotacao
+) => {
   try {
     const service = await prisma.tbl_servicos.update({
       where: {
@@ -111,7 +110,45 @@ const updateServiceRepositorie = async(
   } finally {
     await prisma.$disconnect();
   }
-}
+};
 
+const relatorioGuiasMensal = async (referencia) => {
+  try {
+    const resultado = await prisma.$queryRaw`
+    SELECT 
+        tbl_servicos.competencia,
+        tbl_servicos.fonte, 
+        tbl_servicos.cod_dotacao,
+        tbl_lotacao.descricao,
+        CAST(SUM(tbl_servicos.inss_retido) AS FLOAT) AS retido,
+        CAST(SUM(tbl_servicos.inss_patronal) AS FLOAT) AS patronal,
+        CAST(SUM(tbl_servicos.inss_retido + tbl_servicos.inss_patronal) AS FLOAT) AS total_guia 
+    FROM tbl_servicos
+    INNER JOIN tbl_lotacao 
+        ON tbl_lotacao.codigo_dotacao = tbl_servicos.cod_dotacao
+    WHERE tbl_servicos.competencia = ${referencia}
+    GROUP BY
+        tbl_servicos.competencia,
+        tbl_servicos.fonte,
+        tbl_lotacao.descricao,
+        tbl_servicos.cod_dotacao;
+    `;
 
-export { ListService, insertNewService, updateServiceRepositorie };
+    return resultado;
+
+    // console.log('resultado com total: ', resultadosComTotal)
+    //  console.log('resultado: ', resultado)
+  } catch (error) {
+    console.log(error);
+    throw new Error("Erro ao realizar relatorio");
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+export {
+  ListService,
+  insertNewService,
+  updateServiceRepositorie,
+  relatorioGuiasMensal,
+};
