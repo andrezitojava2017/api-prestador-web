@@ -1,5 +1,11 @@
 import { ListAllServices } from '../controller/services/servicesController.js';
-import { freelancerRespositorie } from '../repositories/freelancerRespositorie.js';
+import {
+  freelancerRespositorie,
+  getAllFreelanceRepositorie,
+  getFreelancerInfo,
+  pisPasepExist,
+  updateFreelanceRepositorie,
+} from '../repositories/freelancerRespositorie.js';
 import {
   insertNewService,
   ListService,
@@ -9,6 +15,24 @@ const freelancerService = async (nome, pispasep) => {
   try {
     const data = await freelancerRespositorie(nome.toUpperCase(), pispasep);
     return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getInfoFreelancerService = async (search) => {
+  try {
+    const rs = await getFreelancerInfo(search);
+    return rs;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getAllFreelanceService = async () => {
+  try {
+    const rs = await getAllFreelanceRepositorie();
+    return rs;
   } catch (error) {
     throw error;
   }
@@ -29,8 +53,8 @@ const insertService = async (
   fonte,
   inss_retido,
   inss_patronal,
-  sal_base,
-  cod_lotacao,
+  salario_base,
+  cod_dotacao,
   pis_pasep
 ) => {
   try {
@@ -40,8 +64,8 @@ const insertService = async (
       fonte,
       inss_retido,
       inss_patronal,
-      sal_base,
-      cod_lotacao,
+      salario_base,
+      cod_dotacao,
       pis_pasep
     );
     return service;
@@ -49,4 +73,20 @@ const insertService = async (
     throw error;
   }
 };
-export { freelancerService, listServicesByCompetence, insertService };
+
+const updateFreelanceService = async (freelance) => {
+  try {
+    await updateFreelanceRepositorie(freelance);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  freelancerService,
+  listServicesByCompetence,
+  insertService,
+  getInfoFreelancerService,
+  getAllFreelanceService,
+  updateFreelanceService,
+};

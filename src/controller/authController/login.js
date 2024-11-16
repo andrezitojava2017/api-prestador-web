@@ -14,8 +14,6 @@ export const loginController = async (req, res, next) => {
         expiresIn: 3600,
       }
     );
-
-    console.log('token gerado: ', token);
     
     res.status(200).json({ token });
   } catch (error) {

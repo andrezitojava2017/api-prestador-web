@@ -87,8 +87,6 @@ const getListTax = async () => {
   try {
     const list = await prisma.tbl_tributo.findMany();
 
-    console.log("lista de tributos ", list);
-
     return list;
   } catch (error) {
     console.warn("ocorreu um erro ", error);
