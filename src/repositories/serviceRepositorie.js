@@ -60,31 +60,18 @@ const insertNewService = async (
         competencia: competencia,
         empenho: empenho,
         fonte: fonte,
-<<<<<<< HEAD
-        cod_dotacao: cod_lotacao,
-        inss_retido: inss_retido,
-        inss_patronal: inss_patronal,
-        salario_base: sal_base,
-        pisPasep: pis_pasep,
-=======
         cod_dotacao: cod_dotacao,
         inss_retido: inss_retido,
         inss_patronal: inss_patronal,
         salario_base: salario_base,
         pis_pasep: pis_pasep,
->>>>>>> a06ae365a96397e6483681a8d34f7fb69f8385d0
       },
     });
 
     return service;
-<<<<<<< HEAD
   } catch (error) {
     console.log(error);
     throw new Error('Ocorreu um erro ao tentar inserir novo serviço');
-=======
-  } catch (error) {
-    console.log(error);
-    throw new Error("Ocorreu um erro ao tentar inserir novo serviço");
   } finally {
     await prisma.$disconnect();
   }
@@ -119,7 +106,7 @@ const updateServiceRepositorie = async (
     return service;
   } catch (error) {
     console.log(error);
-    throw new Error("Ocorreu um erro ao tentar atualizar o serviço");
+    throw new Error('Ocorreu um erro ao tentar atualizar o serviço');
   } finally {
     await prisma.$disconnect();
   }
@@ -153,8 +140,7 @@ const relatorioGuiasMensal = async (referencia) => {
     //  console.log('resultado: ', resultado)
   } catch (error) {
     console.log(error);
-    throw new Error("Erro ao realizar relatorio");
->>>>>>> a06ae365a96397e6483681a8d34f7fb69f8385d0
+    throw new Error('Erro ao realizar relatorio');
   } finally {
     await prisma.$disconnect();
   }
