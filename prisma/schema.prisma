@@ -23,8 +23,8 @@ model tbl_servicos {
   id            Int      @id @default(autoincrement())
   competencia   String   @db.VarChar(10)
   empenho       Int
-  fonte         Int
-  pis_pasep      String   @db.VarChar(100)
+  fonte         String   @db.VarChar(100)
+  pis_pasep     String   @db.VarChar(100)
   inss_retido   Decimal? @db.Decimal(10, 2)
   inss_patronal Decimal? @db.Decimal(10, 2)
   salario_base  Decimal? @db.Decimal(10, 2)

@@ -15,7 +15,7 @@ export const verificationPisPasepExist = async (req, res, next) => {
       }
       return res
         .status(401)
-        .json({ message: "Não cadastrado", data: "PISPASEP não localizado" });
+        .json({ message: "PISPASEP não localizado"});
     } else {
       // condição para CADASTRO DE NOVO PRESTADOR
       const rs = await pisPasepExist(pis_pasep);
