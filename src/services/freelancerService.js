@@ -1,15 +1,15 @@
-import { ListAllServices } from "../controller/services/servicesController.js";
+import { ListAllServices } from '../controller/services/servicesController.js';
 import {
   freelancerRespositorie,
   getAllFreelanceRepositorie,
   getFreelancerInfo,
   pisPasepExist,
   updateFreelanceRepositorie,
-} from "../repositories/freelancerRespositorie.js";
+} from '../repositories/freelancerRespositorie.js';
 import {
   insertNewService,
   ListService,
-} from "../repositories/serviceRepositorie.js";
+} from '../repositories/serviceRepositorie.js';
 
 const freelancerService = async (nome, pispasep) => {
   try {
@@ -38,7 +38,6 @@ const getAllFreelanceService = async () => {
   }
 };
 
-
 const listServicesByCompetence = async (referencia) => {
   try {
     const list = await ListService(referencia);
@@ -47,7 +46,6 @@ const listServicesByCompetence = async (referencia) => {
     throw error;
   }
 };
-
 
 const insertService = async (
   competencia,
@@ -76,15 +74,13 @@ const insertService = async (
   }
 };
 
-const updateFreelanceService = async(freelance)=>{
+const updateFreelanceService = async (freelance) => {
   try {
-    await updateFreelanceRepositorie(freelance)
-
+    await updateFreelanceRepositorie(freelance);
   } catch (error) {
-    throw error
+    throw error;
   }
-}
-
+};
 
 export {
   freelancerService,

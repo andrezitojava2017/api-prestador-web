@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -37,8 +37,8 @@ const ListService = async (referencia) => {
 
     return servicesWithNumber;
   } catch (error) {
-    console.warn("Ocorreu um erro ", error);
-    throw new Error("Ocorreu um erro ao recuperar lista de serviços");
+    console.warn('Ocorreu um erro ', error);
+    throw new Error('Ocorreu um erro ao recuperar lista de serviços');
   } finally {
     await prisma.$disconnect();
   }
@@ -71,7 +71,7 @@ const insertNewService = async (
     return service;
   } catch (error) {
     console.log(error);
-    throw new Error("Ocorreu um erro ao tentar inserir novo serviço");
+    throw new Error('Ocorreu um erro ao tentar inserir novo serviço');
   } finally {
     await prisma.$disconnect();
   }
@@ -106,7 +106,7 @@ const updateServiceRepositorie = async (
     return service;
   } catch (error) {
     console.log(error);
-    throw new Error("Ocorreu um erro ao tentar atualizar o serviço");
+    throw new Error('Ocorreu um erro ao tentar atualizar o serviço');
   } finally {
     await prisma.$disconnect();
   }
@@ -140,7 +140,7 @@ const relatorioGuiasMensal = async (referencia) => {
     //  console.log('resultado: ', resultado)
   } catch (error) {
     console.log(error);
-    throw new Error("Erro ao realizar relatorio");
+    throw new Error('Erro ao realizar relatorio');
   } finally {
     await prisma.$disconnect();
   }
